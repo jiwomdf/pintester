@@ -65,6 +65,9 @@
                                     </li>
                                 </ul>
                             </li>
+
+                            <img src="{{ Auth::user()->pp }}" class="dropdown" alt="" style="heigh:50px;width:50px;border-radius:100%;margin-top:8px;">
+
                         @endguest
                     </ul>
                 </div>
