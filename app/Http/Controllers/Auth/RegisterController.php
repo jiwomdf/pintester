@@ -47,13 +47,16 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        //dd($data);
+
+        // dd(base_path('\ads'));
+        // $file = $data->file('pp');
+        // $file->move(base_path($data->pp),$file->getClientOriginalName());
+
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|min:5',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6|confirmed|alpha_num',
             'gender' => 'required|string|max:5',
-            'pp' => 'string',
         ]);
     }
 
@@ -65,12 +68,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //dd($data);
+        $request = request();
+        $pp = $request->file('pp');
+
+        $path = 'pp/';
+        $name = $data['name'].'.'.$pp->getClientOriginalExtension();
+
+        //dd($name);
+
+        $success = $pp->move($path, $name);
+        
+        
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'gender' => $data['gender'],
-            'pp' => $data['pp'],
+            'pp' => "pp\\" . $name ,
         ]);
     }
 }
