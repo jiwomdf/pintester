@@ -22,3 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/insertcategory','HomeController@insertcat')->name('insertcategory');
+Route::post('/doInsert','HomeController@insertProduct');
