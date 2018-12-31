@@ -1,0 +1,38 @@
+@extends('layouts.app')
+
+@section('content')
+
+    <center>
+        <form action="{{url('/doInsert')}}" method="post" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="container">
+            <table>
+                <tr>
+                    <td>Title : </td>
+                    <td><input type="text" name="title" id=""></td>
+                </tr>
+                <tr>
+                    <td>Caption : </td>
+                    <td><input type="text" name="caption" id=""></td>
+                </tr>
+                <tr>
+                    <td>Image : </td>
+                    <td><input type="file" name="image" id=""></td>
+                </tr>
+                <tr>
+                    <td>Price : </td>
+                    <td><input type="text" name="price" id=""></td>
+                </tr>
+                <tr>
+                    <td>Category : </td>
+                    <td><input type="text" name="category" id=""></td>
+                </tr>
+            </table>
+                
+            </div>
+            <br>
+            <button class="btn-Warning">Add</button>
+        </form>
+    </center>
+
+@endsection
