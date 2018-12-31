@@ -50,7 +50,8 @@
                                 <!-- jiwo add MyPost -->
                                 <a href="/MyPost">My Post</a>
                             </li>
-                        <a href="{{ url('/insertcategory') }}">Insert Category</a> 
+                            <li>
+                            <a href="{{ url('/insertcategory') }}">Insert Category</a> 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -70,6 +71,8 @@
                                     </li>
                                 </ul>
                             </li>
+                            </li>
+                        
                             
 
                             <img src="{{ Auth::user()->pp }}" class="dropdown" alt="" style="heigh:50px;width:50px;border-radius:100%;margin-top:8px;">
