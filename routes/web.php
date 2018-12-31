@@ -28,3 +28,5 @@ Route::get('/MyPost', 'Photo@MyPost');
 Route::get('/InsertPhoto','Photo@InsertPhoto');
 
 Route::post('/doInsert','Photo@doInsert');
+Route::get('/insertcategory','HomeController@insertcat')->name('insertcategory');
+Route::post('/doInsert','HomeController@insertProduct');
