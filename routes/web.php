@@ -30,3 +30,9 @@ Route::get('/InsertPhoto','Photo@InsertPhoto');
 Route::post('/doInsert','Photo@doInsert');
 Route::get('/insertcategory','HomeController@insertcat')->name('insertcategory');
 Route::post('/doInsert','HomeController@insertProduct');
+Route::get('/doDelete/{id}','HomeController@deletecategory');
+
+Route::get('/viewcategory','HomeController@viewcategory')->name('viewcategory');
+Route::get('/formUpdateCategory/{id}','HomeController@formUpdateCategory');
+Route::post('/doUpdate','HomeController@updateCategory');
+Route::get('/viewupdate','HomeController@updateview');
