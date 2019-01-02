@@ -48,7 +48,7 @@
                         @else
                             <li>
                                 <!-- jiwo add MyPost -->
-                                <a href="/MyPost">My Post</a>
+                                <a href="{{url('/MyPost/'.Auth::user()->id)}}">My Post</a>
                             </li>
                             <li>
                             <a href="{{ url('/insertcategory') }}">Insert Category</a> 

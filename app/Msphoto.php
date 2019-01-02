@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class MsPhoto extends Model
 {
     //
-    protected $table = 'MsPhotos';
+    protected $table = 'MsPhoto';
     protected $fillable = [
-        'id', 'title', 'caption','image','price','category',
+        'id', 'title', 'caption','image','price','category','user_id',
     ];
 
-    public function User()
+    public function MsPhoto()
     {
-        return $this->belongsTo(User::id);
+        return $this->belongsToMany('App\User');
     }
 }

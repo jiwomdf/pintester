@@ -3,10 +3,13 @@
 @section('content')
 
     <center>
-        <form action="{{url('/doInsert')}}" method="post" enctype="multipart/form-data">
+        <form action="{{url('/doInsertPhoto')}}" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="container">
             <table>
+                <tr>
+                    <td><input type="hidden" name="user_id" value="{{Auth::user()->id}}"></td>
+                </tr>
                 <tr>
                     <td>Title : </td>
                     <td><input type="text" name="title" id=""></td>
@@ -31,7 +34,7 @@
                 
             </div>
             <br>
-            <button class="btn-Warning">Add</button>
+            <button type="submit" class="btn-Warning">Add</button>
         </form>
     </center>
 

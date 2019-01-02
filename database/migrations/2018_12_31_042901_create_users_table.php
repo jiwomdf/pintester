@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MsPhoto extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class MsPhoto extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('MsPhoto', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('caption');
-            $table->string('image');
-            $table->string('price');
-            $table->string('category');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->enum('gender',['Male','Female']);
+            $table->string('pp');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -32,7 +32,7 @@ class MsPhoto extends Migration
      */
     public function down()
     {
-        //
-        Schema::dropIfExists('MsPhoto');
+        Schema::dropIfExists('users');
     }
 }
+
