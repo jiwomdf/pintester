@@ -52,6 +52,54 @@ class HomeController extends Controller
         $category = new category();
         $category->name = $request->name;
         $category->save();
+        return redirect('viewcategory');
+    }
+
+    public function viewcategory()
+    {
+        $category = category::All();
+        return view('viewcategory',compact('category'));
+    }
+
+    public function formUpdateCategory($id)
+    {
+        $category = category::find($id);
+        return view('formUpdateCategory',compact('category'));
+    }
+    public function updateCategory(Request $request)
+    {
+        $message = [
+            'name.required' => 'Di isi ya bang',
+            'name.between'=>'harus 3-20'
+        ];
+
+        //Validasi
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|between:3,20',
+     
+        ],$message);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+     
+
+        $category = category::find($request->id);
+        $category->name = $request->name;
+        $category->save();
+        //return back();
+      return redirect('viewcategory');
+    }
+
+    public function updateview()
+    {
+        return view('formUpdateCategory');
+    }
+
+    public function deletecategory($id)
+    {
+        category::destroy($id);
         return back();
     }
 }

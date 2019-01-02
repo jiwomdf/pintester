@@ -46,12 +46,25 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                        <!-- tambahin dropdown buat manage -->
+                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                   Manage  <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                    <a href="{{url('/viewcategory')}}">View Category</a> 
+                                    </li>
+                                </ul>
+                                
+                            </li>
                             <li>
                                 <!-- jiwo add MyPost -->
                                 <a href="{{url('/MyPost/'.Auth::user()->id)}}">My Post</a>
                             </li>
                             <li>
-                            <a href="{{ url('/insertcategory') }}">Insert Category</a> 
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
