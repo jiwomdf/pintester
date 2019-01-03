@@ -13,9 +13,11 @@
 <form action="/doComment" method="post" enctype="multipart/form-data">
 {{csrf_field()}} 
 
+
 <table width="100%" height="50%" style="">
+
     <input type="hidden" name="photo_id" value="{{$photos[0]->id}}">
-    <input type="hidden" name="user_id" value="{{$comment[0]->user_id}}">
+    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
     <tr><td>User <button >Delete Post</button></td></tr>
     <tr><td>{{$photos[0]->title}}</td></tr>
@@ -24,8 +26,11 @@
     <tr><td><h4>Comments</h4></td></tr>
 
     <!-- disini di foreach buat load commentnya ada apa aja -->
+    {{$count = 1}}
     @foreach($comment as $c)
-        <tr><td><img src="../pp/{{$c['pp']}}" alt="" style="heigh:50px;width:50px;border-radius:100%;margin-top:8px; margin-right:15px;">{{$c['Name']}} : {{$c['comment']}}</td></tr>
+
+        <tr><td><img src="../pp/{{$c->pp}}" alt="" style="heigh:50px;width:50px;border-radius:100%;margin-top:8px; margin-right:15px;">{{$c->Name}} : {{$c->comment}}</td></tr>
+        {{$count++}}
     @endforeach
     <tr><td ><h4>Add your comment</h4></td></tr>
 

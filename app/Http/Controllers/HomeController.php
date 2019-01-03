@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\category;
+use App\MsPhoto;
 class HomeController extends Controller
 {
     /**
@@ -23,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $photos = MsPhoto::All();
+        return view('home', compact('photos'));
     }
 
     public function insertcat()

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\MsPhoto;
 use App\MsComment;
 use App\User;
+use Auth;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -15,6 +16,7 @@ class PhotoController extends Controller
     public function MyPost($id)
     {
         $photos = MsPhoto::where('user_id','LIKE',$id)->paginate(10);
+        //$photos = $photoss[$ids];
         //dd($photos);
         return view('MyPost',compact('photos'));
     }
@@ -28,11 +30,15 @@ class PhotoController extends Controller
     public function PostDetail($id)
     {
         //$photos = MsPhoto::where('id','LIKE',$id);
-        $ids = (string)$id;
-        $photos = MsPhoto::select('MsPhoto.id','title','caption','image','price','category','Users.Name')->join('Users','user_id','=','user_id')->where('user_id','LIKE',$id)->get();
+        //$ids = (string)$id;
+        $photos = MsPhoto::select('MsPhoto.id','title','caption','image','price','category','Users.Name')->join('Users','Users.id','=','user_id')->where('MsPhoto.id','LIKE',$id)->get();
+        // dd($photoss);
+        // $photos = $photoss[$id];
+
+        
         //get semua comment pada detail photo tersebut
-        $comment = MsComment::select('comment','user_id','photo_id','Users.pp','Users.Name')->join('Users','user_id','=','user_id')->where('photo_id', '=', '1')->get();
-   
+        $comment = MsComment::select('comment','MsComments.user_id','photo_id','Users.pp','Users.Name')->join('Users','Users.id','=','user_id')->join('MsPhoto','MsPhoto.id','=','photo_id')->where('photo_id', '=', $id)->get();
+
         return view('PostDetail', compact('photos'), compact('comment'));
     }
 
@@ -86,7 +92,7 @@ class PhotoController extends Controller
         $photos->save();
         
         
-        $photos = MsPhoto::where('user_id','LIKE',$id)->paginate(10);
+        $photos = MsPhoto::where('user_id','LIKE',Auth::user()->id)->paginate(10);
         //dd($photos);
         return view('MyPost',compact('photos'));
     }
