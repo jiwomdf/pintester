@@ -12,6 +12,6 @@ class CreateUsersTable extends Seeder
      */
     public function run()
     {
-        User::create(['name' => 'Iyang A Wibowo', 'email' => 'iyanganekawibowo@gmail.com', 'password' => bcrypt('123456'), 'gender' => 'Male', 'pp' => 'MsPhoto/user.jpg']);
+        User::create(['name' => 'Iyang A Wibowo', 'email' => 'iyanganekawibowo@gmail.com', 'password' => bcrypt('123456'), 'gender' => 'Male', 'pp' => 'user.jpg']);
     }
 }

@@ -17,7 +17,7 @@
             @if($count % 6 != 0)
             <td>
             <div style="margin:10px;">
-                <a href="{{url('/PostDetail/'.$p->id)}}"> <img src="../{{$p->image}}" alt="" style="heigh:200px; width:200px;"></a>
+                <a href="{{url('/PostDetail/'.$p->id)}}"> <img src="../MsPhoto/{{$p->image}}" alt="" style="heigh:200px; width:200px;"></a>
                 <div>{{$p->title}}</div>
                 <div>{{$p->caption}}</div>
             </div>
@@ -29,7 +29,7 @@
             <td>
             <div style="margin:10px;">
             
-                <a href="{{url('/PostDetail/'.$p->id)}}"> <img src="../{{$p->image}}" alt="" style="heigh:200px; width:200px;margin:10px;"></a>
+                <a href="{{url('/PostDetail/'.$p->id)}}"> <img src="../MsPhoto/{{$p->image}}" alt="" style="heigh:200px; width:200px;margin:10px;"></a>
                 <span>{{$p->title}}</span>
                 <span>{{$p->caption}}</span>
             </div>

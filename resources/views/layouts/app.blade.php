@@ -72,6 +72,9 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
+                                        <a href="{{url('profile/')}}">My Profile</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -85,10 +88,8 @@
                                 </ul>
                             </li>
                             </li>
-                        
-                            
 
-                            <img src="{{ Auth::user()->pp }}" class="dropdown" alt="" style="heigh:50px;width:50px;border-radius:100%;margin-top:8px;">
+                            <img src="{{'pp/'.Auth::user()->pp }}" class="dropdown" alt="" style="heigh:50px;width:50px;border-radius:100%;margin-top:8px;">
 
                         @endguest
                     </ul>

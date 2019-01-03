@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MsPhoto;
+use App\MsComment;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,22 +29,22 @@ class PhotoController extends Controller
     {
         //$photos = MsPhoto::where('id','LIKE',$id);
         $ids = (string)$id;
-        $photos = MsPhoto::findOrFail($ids)->paginate(1);
-
-        //$photos = (string)$temp;
-        //dd($photos);
-        return view('PostDetail', compact('photos'));
+        $photos = MsPhoto::select('MsPhoto.id','title','caption','image','price','category','Users.Name')->join('Users','user_id','=','user_id')->where('user_id','LIKE',$id)->get();
+        //get semua comment pada detail photo tersebut
+        $comment = MsComment::select('comment','user_id','photo_id','Users.pp','Users.Name')->join('Users','user_id','=','user_id')->where('photo_id', '=', '1')->get();
+   
+        return view('PostDetail', compact('photos'), compact('comment'));
     }
 
     public function doInsertPhoto(Request $request)
     {
         $message = [
-            'user_id.required' => 'Di isi ya bang',
-            'title.required' => 'Di isi ya bang',
-            'caption.required' => 'Di isi ya bang',
-            'image.required' => 'Di isi ya bang',
-            'price.required' => 'Di isi ya bang',
-            'category.required' => 'Di isi ya bang',
+            'user_id.required' => '',
+            'title.required' => 'please input the title',
+            'caption.required' => 'please input the caption',
+            'image.required' => 'please upload an image',
+            'price.required' => 'please input the price',
+            'category.required' => 'please input the category',
         ];
 
         //Validasi
@@ -75,7 +76,7 @@ class PhotoController extends Controller
         $photos->title = $request->title;
         $photos->caption = $request->caption;
         //harus di substring
-        $photos->image = 'MsPhoto/'.$file->getClientOriginalName();
+        $photos->image = $file->getClientOriginalName();
         $photos->price = $request->price;
         $photos->category = $request->category;
         $photos->user_id = $request->user_id;
@@ -88,5 +89,25 @@ class PhotoController extends Controller
         $photos = MsPhoto::where('user_id','LIKE',$id)->paginate(10);
         //dd($photos);
         return view('MyPost',compact('photos'));
+    }
+
+    public function Comment(Request $request)
+    {
+        if($request->Comment == null)
+        {
+            $comments = new MsComment();
+            $comments->comment = $request->comment;
+            $comments->photo_id = $request->photo_id;
+            $comments->user_id = $request->user_id;
+            $comments->save();
+        }
+        else
+        {
+            $message = [
+                'comment.required' => 'please input the comment',
+            ];
+        }
+
+        return back();
     }
 }
