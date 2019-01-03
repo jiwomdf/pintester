@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
         <table>
-
+        
         {{$count = 1}}
         @foreach($photos as $p)
             @if($count % 6 != 0)

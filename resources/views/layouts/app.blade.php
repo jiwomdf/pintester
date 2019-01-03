@@ -37,8 +37,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        <form action="{{ url('/doSearch') }}" method="GET">
+                    <input type="text" name="search" placeholder="search by name">
+        <input type="submit" value="submit">
+    </form>
                     </ul>
-
+                    
+                   
+    
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
