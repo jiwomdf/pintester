@@ -104,4 +104,11 @@ class HomeController extends Controller
         category::destroy($id);
         return back();
     }
+
+    public function searchPhoto(Request $request)
+    {
+        $photos = msphoto::where('title','like','%'.$request->search.'%')->orWhere('caption','like','%'.$request->search.'%')
+            ->paginate(5);
+        return view('home',compact('photos'));
+    }
 }

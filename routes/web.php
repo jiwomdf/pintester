@@ -47,3 +47,6 @@ Route::post('/doComment','PhotoController@Comment');
 Route::get('/profile','ProfileController@profile');
 Route::post('doUpdateProfile','ProfileController@doUpdateProfile');
 Route::get('/categories','ProfileController@categories');
+
+//search
+Route::get('/doSearch','HomeController@searchPhoto');
