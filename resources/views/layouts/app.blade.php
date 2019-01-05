@@ -66,6 +66,9 @@
                                 
                             </li>
                             <li>
+                                <a href="/viewCart">Cart</a>
+                            </li>
+                            <li>
                                 <!-- jiwo add MyPost -->
                                 <a href="{{url('/MyPost/'.Auth::user()->id)}}">My Post</a>
                             </li>

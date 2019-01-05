@@ -12,7 +12,7 @@
 */
 use App\MsPhoto;
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
 });
 
@@ -50,3 +50,8 @@ Route::get('/categories','ProfileController@categories');
 
 //search
 Route::get('/doSearch','HomeController@searchPhoto');
+
+//CartController
+route::post('/insertToCart','CartController@insertToCart');
+route::get('/viewCart','CartController@viewCart');
+route::post('/insertTransaction', 'CartController@insertTransaction');

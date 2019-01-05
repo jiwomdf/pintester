@@ -31,7 +31,7 @@ class PhotoController extends Controller
     {
         //$photos = MsPhoto::where('id','LIKE',$id);
         //$ids = (string)$id;
-        $photos = MsPhoto::select('MsPhoto.id','title','caption','image','price','category','Users.Name')->join('Users','Users.id','=','user_id')->where('MsPhoto.id','LIKE',$id)->get();
+        $photos = MsPhoto::select('MsPhoto.id','title','caption','image','price','category','Users.Name','user_id')->join('Users','Users.id','=','user_id')->where('MsPhoto.id','LIKE',$id)->get();
         // dd($photoss);
         // $photos = $photoss[$id];
 
