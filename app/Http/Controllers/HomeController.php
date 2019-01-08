@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\category;
 use App\MsPhoto;
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -86,7 +87,6 @@ class HomeController extends Controller
             return back()->withErrors($validator);
         }
      
-
         $category = category::find($request->id);
         $category->name = $request->name;
         $category->save();
@@ -110,5 +110,12 @@ class HomeController extends Controller
         $photos = msphoto::where('title','like','%'.$request->search.'%')->orWhere('caption','like','%'.$request->search.'%')
             ->paginate(5);
         return view('home',compact('photos'));
+    }
+
+    //jiwo add 6 januari 2018
+    public function manageuser()
+    {
+        $users = User::paginate(5);
+        return view('ManageUser', compact('users'));
     }
 }

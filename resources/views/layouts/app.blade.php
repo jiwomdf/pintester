@@ -51,20 +51,7 @@
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                        <!-- tambahin dropdown buat manage -->
-                        <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                   Manage  <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                    <a href="{{url('/viewcategory')}}">View Category</a> 
-                                    </li>
-                                </ul>
-                                
-                            </li>
+                        @else                            
                             <li>
                                 <a href="/viewCart">Cart</a>
                             </li>
@@ -75,8 +62,10 @@
                             <li>
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}<span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
@@ -96,10 +85,29 @@
                                     </li>
                                 </ul>
                             </li>
+
+                            @if(Auth::user()->role_id === 2)
+                            <!-- tambahin dropdown buat manage -->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                   Manage  <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{url('/viewcategory')}}">View Category</a> 
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/manageuser')}}">Manage User</a>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                            @endif
+
                             </li>
 
                             <img src="{{'pp/'.Auth::user()->pp }}" class="dropdown" alt="" style="heigh:50px;width:50px;border-radius:100%;margin-top:8px;">
-
                         @endguest
                     </ul>
                 </div>

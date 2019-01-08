@@ -34,6 +34,7 @@ Route::get('/viewcategory','HomeController@viewcategory')->name('viewcategory');
 Route::get('/formUpdateCategory/{id}','HomeController@formUpdateCategory');
 Route::post('/doUpdate','HomeController@updateCategory');
 Route::get('/viewupdate','HomeController@updateview');
+Route::get('/manageuser','HomeController@manageuser');
 
 //PhotoController
 Route::get('/MyPost/{id}', 'PhotoController@MyPost');
