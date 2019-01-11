@@ -28,7 +28,13 @@
                 </tr>
                 <tr>
                     <td>Category : </td>
-                    <td><input type="text" name="category" id=""></td>
+                    <td>
+                        <select name="category">
+                        @foreach($category as $c)
+                            <option value="{{$c->id}}">{{$c->name}} </option>
+                        @endforeach
+                        </select>
+                    </td>
                 </tr>
             </table>
                 

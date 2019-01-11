@@ -3,23 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Category;
-use App\User;
 
-class MsCart extends Model
+class TrCategory extends Model
 {
     //
-    protected $table = 'MsCart';
+    protected $table = 'TrCategory';
     protected $fillable = [
-        'id', 'user_id', 'photo_id',
+        'id', 'Date', 'photo_id','user_id',
     ];
 
-    public function MsCart()
+    public function TrCategory1()
     {
         return $this->belongsToMany('App\User');
     }
 
-    public function MsCart2()
+    public function TrCategory2()
     {
         return $this->belongsToMany('App\Category');
     }

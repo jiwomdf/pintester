@@ -62,10 +62,8 @@
                             <li>
 
                             <li class="dropdown">
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}<span class="caret"></span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                   Profile  <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
@@ -99,6 +97,16 @@
                                     </li>
                                     <li>
                                         <a href="{{url('/manageuser')}}">Manage User</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
                                     </li>
                                 </ul>
                                 

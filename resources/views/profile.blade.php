@@ -24,7 +24,7 @@
                 </form>
             </td>
             <td>
-                <form action="/categories">
+                <form action="{{url('/categories')}}">
                     <button>Categories</button>
                 </form>
             </td>

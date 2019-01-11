@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\MsPhoto;
 use App\MsComment;
 use App\User;
+use App\Category;
+use App\TrCategory;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,7 +26,8 @@ class PhotoController extends Controller
     public function InsertPhoto()
     {
         $user = User::all();
-        return view('InsertPhoto', compact('user'));
+        $category = Category::all();
+        return view('InsertPhoto', compact('user'), compact('category'));
     }
 
     public function PostDetail($id)
@@ -44,6 +47,7 @@ class PhotoController extends Controller
 
     public function doInsertPhoto(Request $request)
     {
+
         $message = [
             'user_id.required' => '',
             'title.required' => 'please input the title',
@@ -77,6 +81,7 @@ class PhotoController extends Controller
             $file->move('MsPhoto/',$filename);
         }
 
+        //save untuk photo
         $photos = new MsPhoto();
         //$photos->id = $request->user_id;
         $photos->title = $request->title;
@@ -84,14 +89,15 @@ class PhotoController extends Controller
         //harus di substring
         $photos->image = $file->getClientOriginalName();
         $photos->price = $request->price;
-        $photos->category = $request->category;
+
+        $Category = Category::find($request->category);
+
+        $photos->category = $Category->name;
         $photos->user_id = $request->user_id;
 
-       // dd($photos);
-
         $photos->save();
-        
-        
+ 
+
         $photos = MsPhoto::where('user_id','LIKE',Auth::user()->id)->paginate(10);
         //dd($photos);
         return view('MyPost',compact('photos'));

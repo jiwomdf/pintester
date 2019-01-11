@@ -30,9 +30,67 @@
         </tr>
 </table>
 
-<form action="" method="post">
-    pajdwdaokwdo
-</form>
+    <table width="100%">
+    {{$count = 1}}
+
+    @foreach($data['category'] as $c)
+
+    {{$isDisplay = true}}
+
+        @if(count($data['choosenCategory']))
+            @foreach($data['choosenCategory'] as $cc)
+                
+                {{$c->name}}
+
+                @if($c->id == $cc->category_id)
+                   {{$isDisplay = true}}
+                   @break
+                @else
+                    
+                    {{$isDisplay = false}}
+                @endif
+            
+            @endforeach
+        @else
+            {{$isDisplay = false}}
+        @endif
+
+
+        @if($count % 3 != 0)
+            <td>
+            <div style="margin:10px;">
+                @if($isDisplay == true)
+                    <a href="#">
+                        <input type="button" value="{{$cc->name}}" name="{{$cc->category_id}}" text="{{$cc->name}}" class="btn-primary" >
+                    </a>
+                @else
+                    <a href="{{url('/returnCategory/'.$c->id)}}">
+                        <input type="button" value="{{$c->name}}" name="{{$c->id}}" text="{{$c->name}}" >
+                    </a>
+                @endif
+            </div>
+                
+            </td>
+            {{$count += 1}}
+        @else
+            <td>
+                @if($isDisplay == true)
+                    <a href="{{url('/returnCategory/'.$cc->category_id)}}">
+                        <input type="button" value="{{$cc->name}}" name="{{$cc->category_id}}" text="{{$cc->name}}" class="btn-primary" >
+                    </a>
+                @else
+                    <a href="{{url('/returnCategory/'.$c->id)}}">
+                        <input type="button" value="{{$c->name}}" name="{{$c->id}}" text="{{$c->name}}" >
+                    </a>
+
+                @endif
+            </td>
+            <tr></tr>
+            {{$count += 1}}
+        @endif
+    @endforeach
+    
+    </table>
 
 </div>
 @endsection

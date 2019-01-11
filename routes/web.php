@@ -48,6 +48,10 @@ Route::post('/doComment','PhotoController@Comment');
 Route::get('/profile','ProfileController@profile');
 Route::post('doUpdateProfile','ProfileController@doUpdateProfile');
 Route::get('/categories','ProfileController@categories');
+Route::post('/doChooseCategory','ProfileController@doChooseCategory');
+Route::get('/returnCategory/{id}','ProfileController@returnCategory');
+Route::get('/doDetailUser/{id}','ProfileController@doDetailUser');
+Route::post('/doChangeUser','ProfileController@doChangeUser');
 
 //search
 Route::get('/doSearch','HomeController@searchPhoto');
