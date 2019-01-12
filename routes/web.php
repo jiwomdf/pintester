@@ -44,6 +44,8 @@ Route::post('/doInsertPhoto','PhotoController@doInsertPhoto');
 Route::get('/PostDetail/{id}','PhotoController@PostDetail');
 Route::post('/doComment','PhotoController@Comment');
 
+Route::post('/doDelete','PhotoController@Delete');
+
 //ProfileController
 Route::get('/profile','ProfileController@profile');
 Route::post('doUpdateProfile','ProfileController@doUpdateProfile');
@@ -60,3 +62,5 @@ Route::get('/doSearch','HomeController@searchPhoto');
 route::post('/insertToCart','CartController@insertToCart');
 route::get('/viewCart','CartController@viewCart');
 route::post('/insertTransaction', 'CartController@insertTransaction');
+route::get('/removeCart/{id}', 'CartController@removecart');
+route::get('/viewTransaction/{id}', 'CartController@viewTransaction');

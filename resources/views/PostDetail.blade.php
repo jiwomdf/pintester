@@ -13,7 +13,13 @@
 <table width="100%" height="50%" style="">
     <tr>
         <td>{{$photos[0]->Name}}</td>
-        <td> <button >Delete Post</button></td>
+        <td>
+            <form action="/doDelete" method="post">
+            {{csrf_field()}}
+                <button type="submit">Delete</button>
+                <input type="hidden" name="delId" value="{{$photos[0]->id}}">
+            </form>
+        </td>
         @if($photos[0]->user_id != Auth::user()->id)
             <td>
             <form action="/insertToCart" method="post">
@@ -31,7 +37,7 @@
 </table>
 <form action="/doComment" method="post" enctype="multipart/form-data">
 <table width="60%" height="50%">
-    {{csrf_field()}} 
+    {{csrf_field()}}
     <!-- disini di foreach buat load commentnya ada apa aja -->
     {{$count = 1}}
     @foreach($comment as $c)

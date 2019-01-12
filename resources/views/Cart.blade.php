@@ -16,6 +16,7 @@
 {{csrf_field()}}
 <table>
     {{$price = 0}}
+    {{$count = 0}}
     @foreach($cart as $c)
     <tr>
         <td rowspan="5"><img src="MsPhoto/{{$c->image}}" alt="" style="width:250px; heigh:250px;"></td>
@@ -25,18 +26,18 @@
     <tr><td >Image Title : {{$c->title}}  </td></tr>
     <tr><td >Image Price : {{$c->price}} </td></tr>
     <tr><td >Image Owner : {{$c->Name}} </td></tr>
+    <tr><td>    <a href="{{url('/removeCart/'.$c->id)}}"><input type="button" value="Delete"></a></td></tr>
 
 
     <input type="hidden" name="id" value="{{$c->id}}">
     <input type="hidden" name="title" value="{{$c->title}}">
     <input type="hidden" name="price" value="{{$c->price}}">
     <input type="hidden" name="Name" value="{{$c->Name}}">
-
-    <tr><td><button>Remove</button></td></tr>
-
+    
     </tr>
 
     {{$price = $price + $c->price}}
+    {{$count = $count + 1}}
 
     @endforeach
 </table>

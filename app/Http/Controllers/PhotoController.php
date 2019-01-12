@@ -120,6 +120,15 @@ class PhotoController extends Controller
             ];
         }
 
-        return back();
+        return view('MyPost',compact('photos'));
+    }
+
+    public function Delete(Request $request)
+    {
+        MsPhoto::destroy($request->delId);
+    
+        $photos = MsPhoto::where('user_id','LIKE',$request->id)->paginate(10);
+        return view('MyPost',compact('photos'));
+
     }
 }
