@@ -25,11 +25,16 @@
 
     {{--text error--}}
     <div style="color:red;">
-        @if ($errors->any())
+    <table>
+    @if ($errors->any())
             @foreach ($errors->all() as $error)
-                {{ $error }}
+            <tr>
+                <td>{{ $error }}</td>
+            </tr>
             @endforeach
         @endif
+    </table>
+        
     </div>
                 </div>
             </div>
