@@ -22,7 +22,8 @@
         <td>Gender</td>
         <td>Auth</td>
     </tr> 
-    @for ($i = 0; $i <= 1; $i++)
+    
+    @for ($i = 0; $i < $count; $i++)
     <tr>
         <td>
             <div value="{{ $users[$i]->id }}">{{ $users[$i]->id }}</div>

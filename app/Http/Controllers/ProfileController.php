@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    //
+    //untuk return ke profile
     public function profile()
     {
         $profile = User::findOrFail(Auth::user()->id);
@@ -18,6 +18,7 @@ class ProfileController extends Controller
         return view('profile', compact('profile'));
     }
 
+    //untuk ke catefory di dalam profile
     public function categories()
     {
         $profile = User::findOrFail(Auth::user()->id);
@@ -29,6 +30,7 @@ class ProfileController extends Controller
         return view('categories', compact('profile'), compact('data'));
     }
 
+    //untuk update profile
     public function doUpdateProfile(Request $request)
     {
         $profile = User::find(Auth::user()->id);
@@ -41,6 +43,7 @@ class ProfileController extends Controller
         return back();
     }
 
+    
     public function doChooseCategory(Request $request)
     {
         // //save untuk trCategory
@@ -52,6 +55,7 @@ class ProfileController extends Controller
 
     }
 
+    //untuk ngefollow
     public function returnCategory($id)
     {   
         //$choosenCategory = TrCategory::select('category_id','categories.name')->join('categories','category_id','=','categories.id')->where('user_id','like',Auth::user()->id)->get();
@@ -92,6 +96,23 @@ class ProfileController extends Controller
         return view('categories', compact('profile'), compact('data'));
     }
 
+    //unfollow category
+    public function unfollCategory($id)
+    {
+        $ids = $id + 1;
+        TrCategory::destroy($ids);
+
+        $profile = User::findOrFail(Auth::user()->id);
+        $category = Category::all();
+
+        $choosenCategory = TrCategory::select('category_id','categories.name')->join('categories','category_id','=','categories.id')->where('user_id','like',Auth::user()->id)->get();
+
+        $data = compact('category', 'choosenCategory');
+
+        return view('categories', compact('profile'), compact('data'));
+    }
+
+    //untuk ke detail user
     public function doDetailUser($id)
     {
         $profile = User::findOrFail($id);
@@ -100,6 +121,7 @@ class ProfileController extends Controller
         return view('detailuser', compact('profile'), compact('category'));
     }
 
+    //untuk event di detail user
     public function doChangeUser(Request $request)
     {
         if($request->btn == 1)
@@ -128,9 +150,13 @@ class ProfileController extends Controller
         else
         {
             //delete
-        }
+            User::destroy($request->id);
+            
+            $users = User::paginate(5);
 
-        
-        
+            $count = count($users);
+
+            return view('ManageUser', compact('users'), compact('count'));
+        }
     }
 }

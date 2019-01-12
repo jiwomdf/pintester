@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PhotoController extends Controller
 {
-    //
+    //foto di profile dia
     public function MyPost($id)
     {
         $photos = MsPhoto::where('user_id','LIKE',$id)->paginate(10);
@@ -23,6 +23,7 @@ class PhotoController extends Controller
         return view('MyPost',compact('photos'));
     }
 
+    //untuk view menu insert photo
     public function InsertPhoto()
     {
         $user = User::all();
@@ -30,6 +31,7 @@ class PhotoController extends Controller
         return view('InsertPhoto', compact('user'), compact('category'));
     }
 
+    //untuk liat detail post
     public function PostDetail($id)
     {
         //$photos = MsPhoto::where('id','LIKE',$id);
@@ -45,6 +47,7 @@ class PhotoController extends Controller
         return view('PostDetail', compact('photos'), compact('comment'));
     }
 
+    //untuk insert photo
     public function doInsertPhoto(Request $request)
     {
 
@@ -103,6 +106,7 @@ class PhotoController extends Controller
         return view('MyPost',compact('photos'));
     }
 
+    //untuk comment
     public function Comment(Request $request)
     {
         if($request->Comment == null)
@@ -123,6 +127,8 @@ class PhotoController extends Controller
         return view('MyPost',compact('photos'));
     }
 
+
+    //untuk delete photo
     public function Delete(Request $request)
     {
         MsPhoto::destroy($request->delId);

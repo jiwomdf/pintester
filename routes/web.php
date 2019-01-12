@@ -36,6 +36,8 @@ Route::post('/doUpdate','HomeController@updateCategory');
 Route::get('/viewupdate','HomeController@updateview');
 Route::get('/manageuser','HomeController@manageuser');
 
+Route::get('/basedFollow', 'HomeController@basedFollow');
+
 //PhotoController
 Route::get('/MyPost/{id}', 'PhotoController@MyPost');
 Route::get('/InsertPhoto','PhotoController@InsertPhoto');
@@ -52,6 +54,7 @@ Route::post('doUpdateProfile','ProfileController@doUpdateProfile');
 Route::get('/categories','ProfileController@categories');
 Route::post('/doChooseCategory','ProfileController@doChooseCategory');
 Route::get('/returnCategory/{id}','ProfileController@returnCategory');
+Route::get('/unfollCategory/{id}','ProfileController@unfollCategory');
 Route::get('/doDetailUser/{id}','ProfileController@doDetailUser');
 Route::post('/doChangeUser','ProfileController@doChangeUser');
 Route::post('/doDeleteUser','ProfileController@doDeleteUser');

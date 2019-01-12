@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\category;
 use App\MsPhoto;
 use App\User;
+use App\TrCategory;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -23,17 +25,20 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //view home
     public function index()
     {
         $photos = MsPhoto::All();
         return view('home', compact('photos'));
     }
 
+    //untuk view cart
     public function insertcat()
     {
         return view('categoryins');
     }
 
+    //untuk insert category
     public function insertProduct(Request $request)
     {
         //Custom Message
@@ -58,17 +63,21 @@ class HomeController extends Controller
         return redirect('viewcategory');
     }
 
+    //untuk view category
     public function viewcategory()
     {
         $category = category::All();
         return view('viewcategory',compact('category'));
     }
 
+    //untuk ke page update category berdasarkan id
     public function formUpdateCategory($id)
     {
         $category = category::find($id);
         return view('formUpdateCategory',compact('category'));
     }
+
+    //untuk update category
     public function updateCategory(Request $request)
     {
         $message = [
@@ -94,17 +103,20 @@ class HomeController extends Controller
       return redirect('viewcategory');
     }
 
+    //untuk ke view from update category
     public function updateview()
     {
         return view('formUpdateCategory');
     }
 
+    //untuk delete category
     public function deletecategory($id)
     {
         category::destroy($id);
         return back();
     }
 
+    //untuk search photo
     public function searchPhoto(Request $request)
     {
         $photos = msphoto::where('title','like','%'.$request->search.'%')->orWhere('caption','like','%'.$request->search.'%')
@@ -113,9 +125,29 @@ class HomeController extends Controller
     }
 
     //jiwo add 6 januari 2018
+    //manage user
     public function manageuser()
     {
         $users = User::paginate(5);
-        return view('ManageUser', compact('users'));
+
+        $count = count($users);
+
+        return view('ManageUser', compact('users'), compact('count'));
+    }
+
+    //filter follow berdasarkan yg di follow
+    public function basedFollow()
+    {
+        $choosenCategory = TrCategory::select('category_id','categories.name')->join('categories','category_id','=','categories.id')->where('user_id','like',Auth::user()->id)->get();
+        
+
+        for($i = 0; $i < count($choosenCategory); $i++ )
+        {
+            $photos = msphoto::where('category','like',$choosenCategory[$i]->id)->paginate(5);
+        }
+
+        dd($photos);
+        
+        return view('home',compact('photos'));
     }
 }

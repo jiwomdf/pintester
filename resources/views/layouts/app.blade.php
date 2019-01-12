@@ -109,6 +109,7 @@
                             </li>
 
                             <img src="{{'pp/'.Auth::user()->pp }}" class="dropdown" alt="" style="heigh:50px;width:50px;border-radius:100%;margin-top:8px;">
+                            <span>{{Auth::user()->name }}</span>
                         @endguest
                     </ul>
                 </div>
@@ -116,9 +117,20 @@
         </nav>
 
         @yield('content')
+
+        <div class="container navbar-default">
+            waktu : <span id="time"></span>
+        </div>
+        <div class="container navbar-default">
+            <a href="/basedFollow">Filter by Follow Post</a>
+        </div>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        var d = new Date();
+        document.getElementById("time").innerHTML = d;
+</script>
 </body>
 </html>

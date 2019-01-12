@@ -36,11 +36,7 @@
         <input type="hidden" name="id" value="{{$profile->id}}">
         <button type="reset">Discard Changes</button>
         <button name="btn" value="2">Save Changes</button>
-
-        <form action="/doDeleteUser" method="post">
-            <button name="btn" value="3">Delete Changes</button>
-            <input type="hidden" name="{{$profile->id}}">
-        </form>
+        <button name="btn" value="3">Delete Changes</button>
     </form>
 </center>
 

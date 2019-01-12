@@ -60,7 +60,7 @@
             <td>
             <div style="margin:10px;">
                 @if($isDisplay == true)
-                    <a href="#">
+                    <a href="{{url('/unfollCategory/'.$c->id)}}">
                         <input type="button" value="{{$cc->name}}" name="{{$cc->category_id}}" text="{{$cc->name}}" class="btn-primary" >
                     </a>
                 @else
@@ -75,7 +75,7 @@
         @else
             <td>
                 @if($isDisplay == true)
-                    <a href="{{url('/returnCategory/'.$cc->category_id)}}">
+                    <a href="{{url('/unfollCategory/'.$c->id)}}">
                         <input type="button" value="{{$cc->name}}" name="{{$cc->category_id}}" text="{{$cc->name}}" class="btn-primary" >
                     </a>
                 @else
