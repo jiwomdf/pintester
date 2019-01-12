@@ -54,6 +54,7 @@ Route::post('/doChooseCategory','ProfileController@doChooseCategory');
 Route::get('/returnCategory/{id}','ProfileController@returnCategory');
 Route::get('/doDetailUser/{id}','ProfileController@doDetailUser');
 Route::post('/doChangeUser','ProfileController@doChangeUser');
+Route::post('/doDeleteUser','ProfileController@doDeleteUser');
 
 //search
 Route::get('/doSearch','HomeController@searchPhoto');
