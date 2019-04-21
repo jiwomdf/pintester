@@ -109,6 +109,8 @@ class PhotoController extends Controller
     //untuk comment
     public function Comment(Request $request)
     {
+        $photos = MsPhoto::findorFail($request->id);
+
         if($request->Comment == null)
         {
             $comments = new MsComment();
